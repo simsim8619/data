@@ -256,7 +256,7 @@ const BlackOil = (function() {
                 Predicted.recalculateForPlate(row.plate);
                 
                 // 保存数据
-                DataModel.saveToLocal();
+                DataModel.saveLocal();
             } else {
                 // 恢复原值
                 input.value = oldValue;
