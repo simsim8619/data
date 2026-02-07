@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车辆黑油/齿轮油里程管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 登录页面 -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <h2><i class="fas fa-car"></i> 车辆油品管理系统</h2>
+            <p>请输入密码访问系统</p>
+            
+            <div class="input-group">
+                <label for="password"><i class="fas fa-lock"></i> 密码</label>
+                <input type="password" id="password" placeholder="请输入访问密码">
+            </div>
+            
+            <button class="login-btn" id="loginBtn">登录系统</button>
+            
+            <div class="login-error" id="loginError"></div>
+            
+            <div style="margin-top: 20px; font-size: 12px; color: #888;">
+                <p>提示：默认密码为 "admin123"</p>
+                <p>请在 js/config.js 中修改 PASSWORD 配置项</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 主页面 -->
+    <div class="main-container" id="mainPage">
+        <!-- 头部 -->
+        <div class="header">
+            <div>
+                <h1><i class="fas fa-oil-can"></i> 车辆黑油/齿轮油里程管理系统</h1>
+                <p>核心字段：C列=下次保养公里数，E列=总里程，G列=C-E剩余里程</p>
+            </div>
+            <div class="header-buttons">
+                <button class="btn btn-warning" id="manualCheckBtn">
+                    <i class="fas fa-bell"></i> 手动检查预警
+                </button>
+                <button class="btn btn-primary" id="saveDataBtn">
+                    <i class="fas fa-save"></i> 保存数据
+                </button>
+                <button class="btn btn-danger" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> 退出登录
+                </button>
+            </div>
+        </div>
+        
+        <!-- 预警信息栏 -->
+        <div class="alert-box" id="alertBox">
+            <h4><i class="fas fa-exclamation-triangle"></i> 系统预警信息</h4>
+            <div id="alertContent"></div>
+        </div>
+        
+        <!-- 标签页 -->
+        <div class="tabs">
+            <div class="tab active" data-tab="blackOil">黑油管理 (Black Oil)</div>
+            <div class="tab" data-tab="gearOil">齿轮油管理 (Gear Oil)</div>
+            <div class="tab" data-tab="predictedChange">计划里程预判 (Predicted Change)</div>
+        </div>
+        
+        <!-- 黑油管理标签内容 -->
+        <div class="tab-content active" id="blackOil">
+            <h3><i class="fas fa-oil-can"></i> 黑油管理表</h3>
+            <p style="margin-bottom: 15px; color: #666;">核心字段：A(车牌/唯一)、B(维保到期日期)、C(下次保养公里数)、D(录入日期)、E(总里程)、F(总里程更新日期)、G(剩余里程=C-E/自动算)</p>
+            
+            <div class="table-container">
+                <table id="blackOilTable">
+                    <thead>
+                        <tr>
+                            <th width="120">A: 车牌 (唯一)</th>
+                            <th width="120">B: 维保到期日期</th>
+                            <th width="150">C: 下次保养公里数</th>
+                            <th width="120">D: 录入日期</th>
+                            <th width="120">E: 总里程</th>
+                            <th width="140">F: 总里程更新日期</th>
+                            <th width="120">G: 剩余里程 (C-E)</th>
+                            <th width="100">状态</th>
+                        </tr>
+                    </thead>
+                    <tbody id="blackOilTableBody">
+                        <!-- 数据将通过JavaScript动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <button class="btn btn-primary" id="addBlackOilRow">
+                    <i class="fas fa-plus"></i> 添加新行
+                </button>
+                <button class="btn btn-warning" id="recalculateBlackOil">
+                    <i class="fas fa-calculator"></i> 重新计算所有行
+                </button>
+            </div>
+        </div>
+        
+        <!-- 齿轮油管理标签内容 -->
+        <div class="tab-content" id="gearOil">
+            <h3><i class="fas fa-cogs"></i> 齿轮油管理表</h3>
+            <p style="margin-bottom: 15px; color: #666;">核心字段：A(车牌/唯一)、B(维保到期日期)、C(下次保养公里数)、D(录入日期)、E(总里程)、F(总里程更新日期)、G(剩余里程=C-E/自动算)</p>
+            
+            <div class="table-container">
+                <table id="gearOilTable">
+                    <thead>
+                        <tr>
+                            <th width="120">A: 车牌 (唯一)</th>
+                            <th width="120">B: 维保到期日期</th>
+                            <th width="150">C: 下次保养公里数</th>
+                            <th width="120">D: 录入日期</th>
+                            <th width="120">E: 总里程</th>
+                            <th width="140">F: 总里程更新日期</th>
+                            <th width="120">G: 剩余里程 (C-E)</th>
+                            <th width="100">状态</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gearOilTableBody">
+                        <!-- 数据将通过JavaScript动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <button class="btn btn-primary" id="addGearOilRow">
+                    <i class="fas fa-plus"></i> 添加新行
+                </button>
+                <button class="btn btn-warning" id="recalculateGearOil">
+                    <i class="fas fa-calculator"></i> 重新计算所有行
+                </button>
+            </div>
+        </div>
+        
+        <!-- 计划里程预判标签内容 -->
+        <div class="tab-content" id="predictedChange">
+            <h3><i class="fas fa-chart-line"></i> 计划里程预判表</h3>
+            <p style="margin-bottom: 15px; color: #666;">手动输入车牌和计划行驶里程，系统自动匹配双表数据并计算预判结果</p>
+            
+            <div class="table-container">
+                <table id="predictedTable">
+                    <thead>
+                        <tr>
+                            <th width="120">A: 车牌</th>
+                            <th width="140">B: 计划行驶里程</th>
+                            <th width="120">C: 黑油当前总里程</th>
+                            <th width="140">D: 黑油下次保养公里数</th>
+                            <th width="140">E: 黑油计划后剩余里程</th>
+                            <th width="200">F: 黑油预警</th>
+                            <th width="120">G: 齿轮油当前总里程</th>
+                            <th width="140">H: 齿轮油下次保养公里数</th>
+                            <th width="140">I: 齿轮油计划后剩余里程</th>
+                            <th width="200">J: 齿轮油预警</th>
+                        </tr>
+                    </thead>
+                    <tbody id="predictedTableBody">
+                        <!-- 数据将通过JavaScript动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <button class="btn btn-primary" id="addPredictedRow">
+                    <i class="fas fa-plus"></i> 添加新行
+                </button>
+                <button class="btn btn-warning" id="recalculatePredicted">
+                    <i class="fas fa-calculator"></i> 重新计算所有行
+                </button>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>车辆黑油/齿轮油里程管理系统 &copy; 2023 | 纯HTML+CSS+JavaScript实现 | 数据实时保存</p>
+            <p>核心逻辑完全复刻Excel VBA，无需后端支持</p>
+        </div>
+    </div>
+    
+    <!-- 预警信息弹窗 -->
+    <div class="modal" id="alertModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> 系统预警信息</h3>
+                <button class="close-modal" id="closeAlertModal">&times;</button>
+            </div>
+            <div id="alertModalContent">
+                <!-- 预警内容将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dataService.js"></script> <!-- 新增 -->
+    <script src="js/dataModel.js"></script>
+    <script src="js/alerts.js"></script>
+    <script src="js/blackOil.js"></script>
+    <script src="js/gearOil.js"></script>
+    <script src="js/predicted.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
