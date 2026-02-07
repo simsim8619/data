@@ -1,0 +1,42 @@
+{
+  "blackOil": [
+    {
+      "plate": "QM8517L", //A列：车牌（唯一）
+      "maintainDate": "2026-10-01", // B列：维保到期日期（D+1年）
+      "nextMaintainMile": 15000, // C列：下次保养公里数（核心修正）
+      "entryDate": "2025-10-01", // D列：录入/更新日期
+      "totalMileage": 14600, // E列：总里程（当前行驶，核心修正）
+      "updateDate": "2026-02-05", // F列：总里程更新日期
+      "remainMile": 400, // G列：剩余里程 = C-E（核心修正）
+      "rowColor": "red" // 行颜色（自动计算）
+    }
+  ],
+  "gearOil": [
+    {
+      "plate": "QM8517L",
+      "maintainDate": "2026-10-01",
+      "nextMaintainMile": 30000, // C列：下次保养公里数
+      "entryDate": "2025-10-01",
+      "totalMileage": 26000, // E列：总里程
+      "updateDate": "2026-02-05",
+      "remainMile": 4000, // G列：C-E
+      "rowColor": "red"
+    }
+  ],
+  "predictedChange": [
+    {
+      "plate": "QM8517L", // 手动填：车牌
+      "planMileage": 500, // 手动填：计划行驶里程
+      "gearCurrentMile": 26000, // 匹配齿轮油E列：当前总里程
+      "gearNextMile": 30000, // 匹配齿轮油C列：下次保养公里数
+      "gearRemainOriginal": 4000, // 原剩余 = C-E
+      "gearRemainFinal": 3500, // 计划后剩余 = 原剩余 - 计划里程（核心）
+      "gearAlert": "Need Gear Oil Change (Overdue)", // 预判预警
+      "blackCurrentMile": 14600, // 匹配黑油E列：当前总里程
+      "blackNextMile": 15000, // 匹配黑油C列：下次保养公里数
+      "blackRemainOriginal": 400, // 原剩余 = C-E
+      "blackRemainFinal": -100,  // 计划后剩余 = 原剩余 - 计划里程
+      "blackAlert": "Need Black Oil Change (Overdue)" // 预判预警
+    }
+  ]
+}
