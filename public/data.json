@@ -1,0 +1,114 @@
+{
+  "blackOil": [
+    {
+      "id": "1",
+      "plate": "ABC1234",
+      "maintenanceDate": "15/05/2024",
+      "nextServiceKm": 10000,
+      "entryDate": "15/05/2023",
+      "totalMileage": 8500,
+      "updateDate": "10/10/2023",
+      "remainingKm": 1500
+    },
+    {
+      "id": "2",
+      "plate": "XYZ5678",
+      "maintenanceDate": "20/06/2024",
+      "nextServiceKm": 15000,
+      "entryDate": "20/06/2023",
+      "totalMileage": 14500,
+      "updateDate": "05/10/2023",
+      "remainingKm": 500
+    },
+    {
+      "id": "3",
+      "plate": "QM8517L",
+      "maintenanceDate": "30/07/2024",
+      "nextServiceKm": 8000,
+      "entryDate": "30/07/2023",
+      "totalMileage": 7500,
+      "updateDate": "01/10/2023",
+      "remainingKm": 500
+    },
+    {
+      "id": "4",
+      "plate": "QAA2805W",
+      "maintenanceDate": "10/08/2024",
+      "nextServiceKm": 12000,
+      "entryDate": "10/08/2023",
+      "totalMileage": 11000,
+      "updateDate": "05/10/2023",
+      "remainingKm": 1000
+    },
+    {
+      "id": "5",
+      "plate": "Q2805",
+      "maintenanceDate": "25/09/2024",
+      "nextServiceKm": 9000,
+      "entryDate": "25/09/2023",
+      "totalMileage": 8000,
+      "updateDate": "10/10/2023",
+      "remainingKm": 1000
+    }
+  ],
+  "gearOil": [
+    {
+      "id": "6",
+      "plate": "ABC1234",
+      "maintenanceDate": "15/05/2024",
+      "nextServiceKm": 50000,
+      "entryDate": "15/05/2023",
+      "totalMileage": 45000,
+      "updateDate": "10/10/2023",
+      "remainingKm": 5000
+    },
+    {
+      "id": "7",
+      "plate": "XYZ5678",
+      "maintenanceDate": "20/06/2024",
+      "nextServiceKm": 60000,
+      "entryDate": "20/06/2023",
+      "totalMileage": 59000,
+      "updateDate": "05/10/2023",
+      "remainingKm": 1000
+    },
+    {
+      "id": "8",
+      "plate": "DEF9012",
+      "maintenanceDate": "05/11/2023",
+      "nextServiceKm": 80000,
+      "entryDate": "05/11/2022",
+      "totalMileage": 81000,
+      "updateDate": "01/10/2023",
+      "remainingKm": -1000
+    }
+  ],
+  "predictedChange": [
+    {
+      "id": "9",
+      "plate": "ABC1234",
+      "plannedMileage": 1000,
+      "blackCurrentMileage": 8500,
+      "blackNextService": 10000,
+      "blackRemainingAfter": 500,
+      "blackAlert": "Black Oil Reminder (Low Remain)",
+      "gearCurrentMileage": 45000,
+      "gearNextService": 50000,
+      "gearRemainingAfter": 4000,
+      "gearAlert": "Gear Oil Safe"
+    },
+    {
+      "id": "10",
+      "plate": "XYZ5678",
+      "plannedMileage": 800,
+      "blackCurrentMileage": 14500,
+      "blackNextService": 15000,
+      "blackRemainingAfter": -300,
+      "blackAlert": "Need Black Oil Change (Overdue)",
+      "gearCurrentMileage": 59000,
+      "gearNextService": 60000,
+      "gearRemainingAfter": 200,
+      "gearAlert": "Need Gear Oil Change (Overdue)"
+    }
+  ]
+}
