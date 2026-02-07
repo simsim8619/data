@@ -19,25 +19,13 @@ const DataModel = (function() {
     
     // 自动保存到本地存储
     function startAutoSave() {
-        console.log('启动自动保存');
-        
-        if (saveInterval) {
-            clearInterval(saveInterval);
-        }
-        
-        if (autoSaveEnabled) {
-            // 每30秒自动保存到本地存储
-            saveInterval = setInterval(() => {
-                if (lastSaveTime && (Date.now() - lastSaveTime) > 10000) {
-                    saveToLocal();
-                }
-            }, 30000);
-            
-            // 页面关闭前保存
-            window.addEventListener('beforeunload', handleBeforeUnload);
-            
-            console.log('自动保存已启动，间隔30秒');
-        }
+    // 自动保存逻辑（根据你的需求实现）
+    console.log("自动保存功能已启动");
+    // 示例：每隔5分钟自动保存一次数据
+    setInterval(() => {
+        // 这里写你的保存逻辑，比如调用 saveData() 函数
+        saveToLocal();
+    }, 5 * 60 * 1000);
     }
     
     function stopAutoSave() {
